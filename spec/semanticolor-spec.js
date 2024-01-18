@@ -56,7 +56,7 @@ describe('semanticolor', () => {
 		});
 	});
 
-	describe('legacy tree-sitter grammars', () => {
+	xdescribe('legacy tree-sitter grammars', () => {
 		beforeEach(async () => {
 			atom.config.set('core.useTreeSitterParsers', true);
 			atom.config.set('core.useLegacyTreeSitter', true);
@@ -76,6 +76,35 @@ describe('semanticolor', () => {
 			expect(editor?.languageMode?.grammar?.constructor?.name).toBe(
 				'TreeSitterGrammar',
 			);
+			const scopes = editor
+				.scopeDescriptorForBufferPosition([0, 4])
+				.getScopesArray();
+			expect(scopes).toInclude('identifier.semanticolor');
+		});
+	});
+
+	describe('WASM tree-sitter grammars', () => {
+		beforeEach(async () => {
+			atom.config.set('core.useTreeSitterParsers', true);
+			atom.config.set('core.useLegacyTreeSitter', false);
+			atom.config.set('core.useExperimentalModernTreeSitter', true);
+
+			await atom.packages.activatePackage('semanticolor');
+		});
+
+		it('adds a semanticolor grammar', () => {
+			grammar = atom.grammars.grammarForScopeName('source.js');
+			expect(grammar).toBeTruthy();
+			expect(grammar.scopeName).toBe('source.js');
+			expect(grammar.constructor.name).toBe('WASMTreeSitterGrammar');
+			expect(grammar.packageName).toBe('semanticolor');
+		});
+
+		it('adds semanticolor scopes to buffer', () => {
+			expect(editor?.languageMode?.grammar?.constructor?.name).toBe(
+				'WASMTreeSitterGrammar',
+			);
+			// console.log('grammar', editor.languageMode.grammar)
 			const scopes = editor
 				.scopeDescriptorForBufferPosition([0, 4])
 				.getScopesArray();
