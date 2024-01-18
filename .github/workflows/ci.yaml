@@ -1,7 +1,7 @@
 ---
 # Originally copied (and adapted) from
 # https://github.com/Spiker985/x-terminal-reloaded/blob/main/.github/workflows/main.yml
-name: "ci"
+name: 'ci'
 on:
   pull_request:
   push:

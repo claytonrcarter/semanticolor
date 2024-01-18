@@ -40,17 +40,15 @@ describe('semanticolor', () => {
 		});
 
 		it('adds a semanticolor grammar', () => {
-			grammar = atom.grammars.grammarForScopeName("source.js");
+			grammar = atom.grammars.grammarForScopeName('source.js');
 			expect(grammar).toBeTruthy();
-			expect(grammar.scopeName).toBe("source.js");
-			expect(grammar.constructor.name).toBe("Grammar");
-			expect(grammar.packageName).toBe("semanticolor");
-		})
+			expect(grammar.scopeName).toBe('source.js');
+			expect(grammar.constructor.name).toBe('Grammar');
+			expect(grammar.packageName).toBe('semanticolor');
+		});
 
 		it('adds semanticolor scopes to buffer', () => {
-			expect(editor?.languageMode?.grammar?.constructor?.name).toBe(
-				'Grammar',
-			);
+			expect(editor?.languageMode?.grammar?.constructor?.name).toBe('Grammar');
 			const scopes = editor
 				.scopeDescriptorForBufferPosition([0, 4])
 				.getScopesArray();
@@ -67,12 +65,12 @@ describe('semanticolor', () => {
 		});
 
 		it('adds a semanticolor grammar', () => {
-			grammar = atom.grammars.grammarForScopeName("source.js");
+			grammar = atom.grammars.grammarForScopeName('source.js');
 			expect(grammar).toBeTruthy();
-			expect(grammar.scopeName).toBe("source.js");
-			expect(grammar.constructor.name).toBe("TreeSitterGrammar");
-			expect(grammar.packageName).toBe("semanticolor");
-		})
+			expect(grammar.scopeName).toBe('source.js');
+			expect(grammar.constructor.name).toBe('TreeSitterGrammar');
+			expect(grammar.packageName).toBe('semanticolor');
+		});
 
 		it('adds semanticolor scopes to buffer', () => {
 			expect(editor?.languageMode?.grammar?.constructor?.name).toBe(

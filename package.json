@@ -33,6 +33,7 @@
     "prettier": "^3.2.4"
   },
   "scripts": {
+    "format": "prettier --write .",
     "lint": "eslint .",
     "lintfix": "npm run eslint -- --fix",
     "test": "pulsar --test spec"
